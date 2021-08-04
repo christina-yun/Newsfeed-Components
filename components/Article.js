@@ -86,7 +86,17 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
-  }
+  },
+
+  // {
+  //   title: 'How to bang your head over and over again',
+  //   date: 'Jan 1st, 2019',
+  //   firstParagraph: `This was so fucking hard `,
+
+  //   secondParagraph: `mf? `,
+
+  //   thirdParagraph: `tacos`
+  // }
 ];
 
 /*
@@ -115,23 +125,50 @@ const data = [
   Refresh the page to see the new article.
 */
 const allArticles = document.querySelector('.articles');
-const articleMaker = function(article){
+
+function articleMaker({title, date, firstParagraph, secondParagraph, thirdParagraph}){
+  //create elements
   const articleDiv = document.createElement('div');
   const h2 = document.createElement('h2');
+  const dateP = document.createElement('p');
   const p1 = document.createElement('p');
   const p2=  document.createElement('p');
   const p3=  document.createElement('p');
   const articleButton = document.createElement('span');
-
+//format elements
   articleDiv.appendChild(h2);
+  articleDiv.appendChild(dateP);
   articleDiv.appendChild(p1);
   articleDiv.appendChild(p2);
   articleDiv.appendChild(p3);
   articleDiv.appendChild(articleButton);
 
+//assign class names
+  articleDiv.classList = 'article';
+  dateP.classList = 'date';
+  articleButton.classList = 'expandButton';
 
+//put the text inside
+h2.textContent= title;
+dateP.textContent = date;
+p1.textContent = firstParagraph;
+p2.textContent = secondParagraph;
+p3.textContent = thirdParagraph;
+articleButton.textContent = '+';
 
-
-
-
+  //add event listener
+  articleButton.addEventListener('click', event => {
+    articleDiv.classList.toggle('article-open')
+  })
+  return articleDiv;
 };
+
+const articleElements = data.map(article =>{
+  
+  return articleMaker(article);
+})
+
+articleElements.forEach(article => {
+  allArticles.appendChild(article);
+})
+console.log(allArticles);

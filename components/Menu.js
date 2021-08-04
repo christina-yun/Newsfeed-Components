@@ -32,13 +32,17 @@ let menuItems = [
   Step 6: Use 'menuMaker' to create a menu using the 'menuItems' array, and append the returned menu to the header.
 */
 //Nesting all the items
+
+const header = document.querySelector('.header');
 const menuDiv = document.createElement('div');
 const menuList = document.createElement('ul');
+const menuButton =document.querySelector('.menu-button');
 
 // Adding the class name(s)
 menuDiv.className = 'menu';
 
 //Appending to the divs
+header.appendChild(menuDiv)
 menuDiv.appendChild(menuList);
 
 //Add menu items to menuList
@@ -48,8 +52,9 @@ const menuMaker = menuItems.map(item => {
   
   return menuItem;
 });
-
-  menuList.addEventListener('click', event =>{
+// toggles the menu open 
+menuButton.addEventListener('click', event => {
+  /*this is where the problem is happening*/
   menuDiv.classList.toggle('menu--open');
 });
 
@@ -57,4 +62,4 @@ menuMaker.forEach(li => {
   menuList.appendChild(li);
 });
 
-console.log(menuList);
+console.log(menuList)
