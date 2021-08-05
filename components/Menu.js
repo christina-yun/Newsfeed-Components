@@ -31,3 +31,64 @@ let menuItems = [
 
   Step 6: Use 'menuMaker' to create a menu using the 'menuItems' array, and append the returned menu to the header.
 */
+//Nesting all the items
+
+
+function menuMaker(menuItems){
+//Formatting the stuff
+  const header = document.querySelector('.header');
+  const menuDiv = document.createElement('div');
+  const menuList = document.createElement('ul');
+  const menuButton = document.querySelector('.menu-button');
+
+//appending to the divs
+  header.appendChild(menuDiv);
+  menuDiv.appendChild(menuList);  
+
+  //adding the class names
+  menuDiv.className = 'menu';
+
+  //click toggle
+    menuButton.addEventListener('click', event => {
+    menuDiv.classList.toggle('menu--open');
+    });
+
+  //Add menu items to menuList
+  menuItems.forEach(item => {
+    const menuItem = document.createElement('li');
+    menuItem.textContent = item;
+    menuList.appendChild(menuItem);
+  });
+
+    return menuDiv;
+  };
+  
+  menuMaker(menuItems);
+  
+// const menuDiv = document.createElement('div');
+// const menuList = document.createElement('ul');
+// const menuButton =document.querySelector('.menu-button');
+
+// // Adding the class name(s)
+// menuDiv.className = 'menu';
+
+// //Appending to the divs
+// header.appendChild(menuDiv)
+// menuDiv.appendChild(menuList);
+
+// //Add menu items to menuList
+// const menuMaker = menuItems.map(item => {
+//   const menuItem = document.createElement('li');
+//   menuItem.textContent = item;
+  
+//   return menuItem;
+// });
+// // toggles the menu open 
+// menuButton.addEventListener('click', event => {
+//   /*this is where the problem is happening*/
+//   menuDiv.classList.toggle('menu--open');
+// });
+
+// menuMaker.forEach(li => {
+//   menuList.appendChild(li);
+// });
