@@ -156,15 +156,15 @@ p2.textContent = secondParagraph;
 p3.textContent = thirdParagraph;
 articleButton.textContent = '+';
 
-  //add event listener
-  articleButton.addEventListener('click', event => {
-    articleDiv.classList.toggle('article-open')
-  })
+//add event listener
+articleButton.addEventListener('click', event => {
+  articleDiv.classList.toggle('article-open')
+});
   return articleDiv;
-};
+}
 
+//create array of article divs
 const articleElements = data.map(article =>{
-  
   return articleMaker(article);
 })
 

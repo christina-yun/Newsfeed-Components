@@ -33,33 +33,62 @@ let menuItems = [
 */
 //Nesting all the items
 
-const header = document.querySelector('.header');
-const menuDiv = document.createElement('div');
-const menuList = document.createElement('ul');
-const menuButton =document.querySelector('.menu-button');
 
-// Adding the class name(s)
-menuDiv.className = 'menu';
+function menuMaker(menuItems){
+//Formatting the stuff
+  const header = document.querySelector('.header');
+  const menuDiv = document.createElement('div');
+  const menuList = document.createElement('ul');
+  const menuButton = document.querySelector('.menu-button');
 
-//Appending to the divs
-header.appendChild(menuDiv)
-menuDiv.appendChild(menuList);
+//appending to the divs
+  header.appendChild(menuDiv);
+  menuDiv.appendChild(menuList);  
 
-//Add menu items to menuList
-const menuMaker = menuItems.map(item => {
-  const menuItem = document.createElement('li');
-  menuItem.textContent = item;
+  //adding the class names
+  menuDiv.className = 'menu';
+
+  //click toggle
+    menuButton.addEventListener('click', event => {
+    menuDiv.classList.toggle('menu--open');
+    });
+
+  //Add menu items to menuList
+  menuItems.forEach(item => {
+    const menuItem = document.createElement('li');
+    menuItem.textContent = item;
+    menuList.appendChild(menuItem);
+  });
+
+    return menuDiv;
+  };
   
-  return menuItem;
-});
-// toggles the menu open 
-menuButton.addEventListener('click', event => {
-  /*this is where the problem is happening*/
-  menuDiv.classList.toggle('menu--open');
-});
+  menuMaker(menuItems);
+  
+// const menuDiv = document.createElement('div');
+// const menuList = document.createElement('ul');
+// const menuButton =document.querySelector('.menu-button');
 
-menuMaker.forEach(li => {
-  menuList.appendChild(li);
-});
+// // Adding the class name(s)
+// menuDiv.className = 'menu';
 
-console.log(menuList)
+// //Appending to the divs
+// header.appendChild(menuDiv)
+// menuDiv.appendChild(menuList);
+
+// //Add menu items to menuList
+// const menuMaker = menuItems.map(item => {
+//   const menuItem = document.createElement('li');
+//   menuItem.textContent = item;
+  
+//   return menuItem;
+// });
+// // toggles the menu open 
+// menuButton.addEventListener('click', event => {
+//   /*this is where the problem is happening*/
+//   menuDiv.classList.toggle('menu--open');
+// });
+
+// menuMaker.forEach(li => {
+//   menuList.appendChild(li);
+// });
